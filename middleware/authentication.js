@@ -6,16 +6,27 @@ const authenticateUser = async (req, res, next) => {
   if (!token) {
     throw new CustomError.UnauthenticatedError("Authentication Invalid");
   }
-  console.log(token);
+
   try {
-    const payload = isTokenValid({ token });
-    console.log(payload);
+    const { name, userId, role } = isTokenValid({ token });
+    req.user = { name, userId, role };
     next();
   } catch (error) {
     throw new CustomError.UnauthenticatedError("Authenticationn Invalid");
   }
 };
 
+const authorizePermissions = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      throw new CustomError.UnauthorizedError(
+        "Unauthorized to access this route"
+      );
+    }
+    next();
+  };
+};
 module.exports = {
   authenticateUser,
+  authorizePermissions,
 };
