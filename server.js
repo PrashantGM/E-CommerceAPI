@@ -12,6 +12,8 @@ const dbConnect = require("./database/connect");
 const authRouter = require("./routes/authRoutes");
 const userRouter = require("./routes/userRoutes");
 const productRouter = require("./routes/productRoutes");
+const reviewRouter = require("./routes/reviewRoutes");
+
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
@@ -28,6 +30,8 @@ server.get("/api/v1", (req, res) => {
 server.use("/api/v1/auth", authRouter);
 server.use("/api/v1/users", userRouter);
 server.use("/api/v1/products", productRouter);
+server.use("/api/v1/reviews", reviewRouter);
+
 //error handler middlewares
 server.use(notFoundMiddleware);
 server.use(errorHandlerMiddleware);
