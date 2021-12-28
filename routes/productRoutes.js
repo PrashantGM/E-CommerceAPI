@@ -8,11 +8,11 @@ const {
   deleteProduct,
   uploadImage,
 } = require("../controllers/productController");
+
 const {
   authenticateUser,
   authorizePermissions,
 } = require("../middleware/authentication");
-
 router
   .route("/")
   .post([authenticateUser, authorizePermissions("admin")], createProduct)
