@@ -13,6 +13,7 @@ const authRouter = require("./routes/authRoutes");
 const userRouter = require("./routes/userRoutes");
 const productRouter = require("./routes/productRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
+const orderRouter = require("./routes/orderRoutes");
 
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
@@ -31,6 +32,7 @@ server.use("/api/v1/auth", authRouter);
 server.use("/api/v1/users", userRouter);
 server.use("/api/v1/products", productRouter);
 server.use("/api/v1/reviews", reviewRouter);
+server.use("/api/v1/orders", orderRouter);
 
 //error handler middlewares
 server.use(notFoundMiddleware);
