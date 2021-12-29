@@ -41,10 +41,6 @@ server.use(express.json());
 server.use(cookieParser(process.env.JWT_SECRET));
 server.use(express.static("./public"));
 server.use(fileUpload());
-server.get("/api/v1", (req, res) => {
-  console.log(req.signedCookies);
-  res.send("e-commerce api");
-});
 
 server.use("/api/v1/auth", authRouter);
 server.use("/api/v1/users", userRouter);
